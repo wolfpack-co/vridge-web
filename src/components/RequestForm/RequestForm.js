@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import useAxios from 'axios-hooks';
 import ReactNotifications from 'react-browser-notifications';
 import { makeStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
@@ -12,29 +13,32 @@ const useStyles = makeStyles(theme => ({
 }));
 
 let message = '';
+
 const RequestForm = ({ product, onDismiss }) => {
+  const [{ data, loading, error }, request] = useAxios(
+    { url: `/products/${product.id}/book`, method: 'PUT' },
+    { manual: true }
+  );
+
   let ref = useRef(null);
   let message = useRef('');
 
-  const classes = useStyles();
+  const handleRequest = async () => {
+    try {
+      await request({ data: { product: { bookedQuantity: product.quantity } } });
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
+  const classes = useStyles();
   return (
     <div>
-      <ReactNotifications
-        onRef={r => (ref = r)}
-        title="message" // Required
-        body="This is the body"
-        icon="icon.png"
-        tag="abcdef"
-        timeout="2000"
-        onClick={event => ref.close(event.target.tag)}
-      />
-
       <h2 id="transition-modal-title">{product.name}</h2>
       <p id="transition-modal-description">
         {product.creator.name} - fl. {product.creator.floor} ap. {product.creator.apartment}{' '}
       </p>
-      <Fab color="primary" aria-label="add" className={classes.fab} onClick={() => ref.show()}>
+      <Fab color="primary" aria-label="add" className={classes.fab} onClick={handleRequest}>
         <CheckIcon />
       </Fab>
       <Fab color="default" aria-label="add" className={classes.fab} onClick={onDismiss}>

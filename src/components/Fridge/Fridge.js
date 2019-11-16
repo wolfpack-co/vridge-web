@@ -51,6 +51,7 @@ const Fridge = () => {
   console.log(products);
   const [term, setTerm] = useState('');
   const classes = useStyles();
+
   if (loading || error) {
     return null;
   }
@@ -83,18 +84,21 @@ const Fridge = () => {
 
         {products
           .filter(product => product.name.toLowerCase().includes(term.toLowerCase()))
-          .map(product => (
-            <GridListTile key={product.id} cols={1}>
-              <InsertEmoticonIcon className={classes.avatar} fontSize="large" />
-              <img src={product.img || 'tomato.png'} alt={product.name} />
-              <GridListTileBar
-                className={classes.title}
-                title={`${product.name} - ${product.quantity}`}
-                subtitle={<span>by: {product.creator.name}</span>}
-                actionIcon={<GetButton product={product} />}
-              ></GridListTileBar>
-            </GridListTile>
-          ))}
+          .map(product => {
+            const { creator } = product;
+            return (
+              <GridListTile key={product.id} cols={1}>
+                <InsertEmoticonIcon className={classes.avatar} fontSize="large" />
+                <img src={product.img || 'tomato.png'} alt={product.name} />
+                <GridListTileBar
+                  className={classes.title}
+                  title={`${product.name} - ${product.quantity}`}
+                  subtitle={<span>{creator && `by: ${creator.fullName}`}</span>}
+                  actionIcon={<GetButton product={product} />}
+                ></GridListTileBar>
+              </GridListTile>
+            );
+          })}
       </GridList>
     </Container>
   );

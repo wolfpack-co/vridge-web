@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import useAxios from 'axios-hooks';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -29,13 +30,24 @@ const useStyles = makeStyles(theme => ({
   },
   fab: { margin: '0 10px' },
 }));
+
 const AddToFridgeForm = ({ onDismiss }) => {
   const classes = useStyles();
   const [name, setName] = useState('');
+  const [quantity, setQuantity] = useState(0);
 
-  const handleSubmit = event => {
+  const [{ data, loading, error }, leaveInFridge] = useAxios(
+    { url: `products`, method: 'post' },
+    { manual: true }
+  );
+
+  const handleSubmit = async event => {
     event.preventDefault();
-    console.log(event);
+    try {
+      await leaveInFridge({ data: { shared: true, name, quantity, creator: { id: 1 } } });
+    } catch (e) {
+      console.log(e);
+    }
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -57,7 +69,13 @@ const AddToFridgeForm = ({ onDismiss }) => {
         </Select>
       </FormControl>
       <FormControl className={classes.formControl}>
-        <TextField id="standard-basic" label="Quantity" margin="normal" />
+        <TextField
+          id="standard-basic"
+          label="Quantity"
+          margin="normal"
+          onChange={event => setQuantity(event.target.value)}
+          value={quantity}
+        />
       </FormControl>
       <div className={classes.actions}>
         <Fab color="primary" type="submit" aria-label="add" className={classes.fab}>
