@@ -25,6 +25,6 @@ steps:
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.SourcesDirectory)/build'
+    targetPath: '$(Build.SourcesDirectory)'
     artifact: 'frontend'
     publishLocation: 'pipeline'
