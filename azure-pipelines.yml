@@ -36,7 +36,6 @@ steps:
     SourceFolder: '$(Build.SourcesDirectory)'
     Contents: 'server.js'
     TargetFolder: '$(Build.SourcesDirectory)/staging'
-    CleanTargetFolder: true
     OverWrite: true
 
 - task: PublishPipelineArtifact@1
