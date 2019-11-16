@@ -9,6 +9,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import Search from '@material-ui/icons/Search';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import Avatar from '@material-ui/core/Avatar';
 
 import GetButton from '../GetButton';
 
@@ -36,6 +37,9 @@ const useStyles = makeStyles(theme => ({
   },
   getIcon: {
     color: 'red',
+  },
+  avatar: {
+    zIndex: 10,
   },
 }));
 
@@ -105,13 +109,19 @@ const Fridge = () => {
           .filter(product => product.name.toLowerCase().includes(term.toLowerCase()))
           .map(product => (
             <GridListTile key={product.img} cols={1}>
+              <Avatar
+                alt="Remy Sharp"
+                src="https://material-ui.com/static/images/avatar/1.jpg"
+                className={classes.avatar}
+              />
+
               <img src={product.img} alt={product.name} />
               <GridListTileBar
                 className={classes.title}
                 title={product.name}
                 subtitle={<span>by: {product.creator.name}</span>}
                 actionIcon={<GetButton product={product} />}
-              />
+              ></GridListTileBar>
             </GridListTile>
           ))}
       </GridList>
