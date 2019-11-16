@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import useAxios from 'axios-hooks';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -10,38 +9,10 @@ import Search from '@material-ui/icons/Search';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Avatar from '@material-ui/core/Avatar';
-
 import GetButton from '../GetButton';
+import LeaveButton from '../LeaveButton';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
-  },
-  gridList: {
-    width: '100%',
-    maxWidth: '500px',
-  },
-  icon: {
-    color: 'rgba(255, 255, 255, 0.54)',
-  },
-  search: {
-    width: '100%',
-    margin: '0 0 20px 0',
-  },
-  header: {
-    fontSize: '26px',
-  },
-  getIcon: {
-    color: 'red',
-  },
-  avatar: {
-    zIndex: 10,
-  },
-}));
+import useStyles from './useStyles';
 
 const products = [
   {
@@ -85,7 +56,8 @@ const Fridge = () => {
       <GridList cellHeight={180} className={classes.gridList} cols={2}>
         <GridListTile key="Subheader" cols={2} style={{ height: 'auto', fontSize: '26px' }}>
           <ListSubheader className={classes.header} component="h3">
-            Available in the fridge
+            <span className={classes.heading}>What's available</span>
+            <LeaveButton />
           </ListSubheader>
         </GridListTile>
         <GridListTile key="Search" cols={3} style={{ height: 'auto' }}>
