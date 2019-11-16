@@ -23,8 +23,24 @@ steps:
     yarn build
   displayName: 'yarn install & build'
 
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)/build'
+    Contents: '**'
+    TargetFolder: '$(Build.SourcesDirectory)/staging/build'
+    CleanTargetFolder: true
+    OverWrite: true
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)/server.js'
+    Contents: '**'
+    TargetFolder: '$(Build.SourcesDirectory)/staging'
+    CleanTargetFolder: true
+    OverWrite: true
+
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.SourcesDirectory)'
-    artifact: 'frontend'
+    targetPath: '$(Build.SourcesDirectory)/staging'
+    artifact: 'vridge-app'
     publishLocation: 'pipeline'
