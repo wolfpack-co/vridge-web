@@ -1,10 +1,10 @@
 import React from 'react';
 import Fridge from '../components/Fridge';
-import Menu from '../components/Menu';
+import Tabs from '../components/Tabs';
 import AuthorizedLayout from './AuthorizedLayout';
 
 const FridgePage = () => (
-  <AuthorizedLayout tabs={<Menu />}>
+  <AuthorizedLayout tabs={<Tabs />}>
     <Fridge />
   </AuthorizedLayout>
 );
