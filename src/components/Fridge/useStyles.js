@@ -28,6 +28,7 @@ const useStyles = makeStyles(theme => ({
     zIndex: 10,
     top: 5,
     right: 5,
+    position: 'absolute',
   },
   heading: {
     float: 'left',

@@ -8,13 +8,13 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import Search from '@material-ui/icons/Search';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import Avatar from '@material-ui/core/Avatar';
 import GetButton from '../GetButton';
 import LeaveButton from '../LeaveButton';
+import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 
 import useStyles from './useStyles';
 
-const products = [
+let products = [
   {
     img: 'tomato.png',
     name: 'Tomatoes',
@@ -47,9 +47,13 @@ const products = [
 ];
 
 const Fridge = () => {
-  const [{ data, loading, error }] = useAxios('/products');
+  const [{ data: products, loading, error }] = useAxios('/products');
+  console.log(products);
   const [term, setTerm] = useState('');
   const classes = useStyles();
+  if (loading || error) {
+    return null;
+  }
 
   return (
     <Container maxWidth="sm">
@@ -80,17 +84,12 @@ const Fridge = () => {
         {products
           .filter(product => product.name.toLowerCase().includes(term.toLowerCase()))
           .map(product => (
-            <GridListTile key={product.img} cols={1}>
-              <Avatar
-                alt="Remy Sharp"
-                src="https://material-ui.com/static/images/avatar/1.jpg"
-                className={classes.avatar}
-              />
-
-              <img src={product.img} alt={product.name} />
+            <GridListTile key={product.id} cols={1}>
+              <InsertEmoticonIcon className={classes.avatar} fontSize="large" />
+              <img src={product.img || 'tomato.png'} alt={product.name} />
               <GridListTileBar
                 className={classes.title}
-                title={product.name}
+                title={`${product.name} - ${product.quantity}`}
                 subtitle={<span>by: {product.creator.name}</span>}
                 actionIcon={<GetButton product={product} />}
               ></GridListTileBar>
