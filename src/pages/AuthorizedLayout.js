@@ -14,8 +14,8 @@ const useStyles = makeStyles(theme => ({
     minHeight: '100vh',
   },
   main: {
-    marginTop: theme.spacing(8),
-    marginBottom: theme.spacing(2),
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
   },
   footer: {
     padding: theme.spacing(2),
@@ -24,13 +24,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const AuthorizedLayout = ({ children }) => {
+const AuthorizedLayout = ({ children, tabs }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <CssBaseline />
       <Header />
+      {tabs}
       <Container component="main" className={classes.main} maxWidth="sm">
         {children}
       </Container>

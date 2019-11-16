@@ -11,9 +11,9 @@ const App = () => {
       <div className="App">
         <Switch>
           <Route exact path="/">
-            <Redirect to="/vridge" />
+            <Redirect to="/vridge/yours" />
           </Route>
-          <Route path="/vridge">
+          <Route path="/vridge/:creator">
             <VridgePage />
           </Route>
           <Route path="/fridge">

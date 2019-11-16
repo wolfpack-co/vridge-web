@@ -41,7 +41,6 @@ function a11yProps(index) {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
   },
   tabsContainer: {},
@@ -67,28 +66,16 @@ export default function SimpleTabs() {
           onChange={(event, newValue) => setValue(newValue)}
         >
           <Tab
-            value="/vridge"
-            onClick={() => history.push('/vridge')}
-            label="Vridge"
+            value="/vridge/yours"
+            onClick={() => history.push('/vridge/yours')}
+            label="Your offerings"
             {...a11yProps(0)}
           />
           <Tab
-            value="/fridge"
-            onClick={() => history.push('/fridge')}
-            label="Fridge"
+            value="/fridge/others"
+            onClick={() => history.push('/vridge/others')}
+            label="Others offerings"
             {...a11yProps(1)}
-          />
-          <Tab
-            value="/community"
-            onClick={() => history.push('/community')}
-            label="Community"
-            {...a11yProps(3)}
-          />
-          <Tab
-            value="/account"
-            onClick={() => history.push('/account')}
-            label="Account"
-            {...a11yProps(2)}
           />
         </Tabs>
       </AppBar>

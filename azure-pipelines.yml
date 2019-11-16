@@ -34,7 +34,9 @@ steps:
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)'
-    Contents: 'server.js'
+    Contents: |
+      server.js
+      package.json
     TargetFolder: '$(Build.SourcesDirectory)/staging'
     OverWrite: true
 

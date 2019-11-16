@@ -40,7 +40,7 @@ const BottomMenu = () => {
       <BottomNavigationAction label="Account" value="/account" icon={<PersonIcon />} />
       <BottomNavigationAction
         label="Vridge"
-        value="/vridge"
+        value="/vridge/yours"
         icon={
           <span className={classes.vridgeIcon}>
             <CloudIcon className={classes.cloudIcon} />

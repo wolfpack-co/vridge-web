@@ -24,12 +24,6 @@ const useStyles = makeStyles(theme => ({
   getIcon: {
     color: 'red',
   },
-  avatar: {
-    zIndex: 10,
-    top: 5,
-    right: 5,
-    position: 'absolute',
-  },
   heading: {
     float: 'left',
     marginLeft: '-15px',
