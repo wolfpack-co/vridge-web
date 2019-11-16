@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import useAxios from 'axios-hooks';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import GridList from '@material-ui/core/GridList';
@@ -71,6 +72,7 @@ const products = [
 ];
 
 const Fridge = () => {
+  const [{ data, loading, error }] = useAxios('/products');
   const [term, setTerm] = useState('');
   const classes = useStyles();
 
