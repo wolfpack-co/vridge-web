@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 let message = '';
-const RequestForm = ({ product }) => {
+const RequestForm = ({ product, onDismiss }) => {
   let ref = useRef(null);
   let message = useRef('');
 
@@ -37,12 +37,7 @@ const RequestForm = ({ product }) => {
       <Fab color="primary" aria-label="add" className={classes.fab} onClick={() => ref.show()}>
         <CheckIcon />
       </Fab>
-      <Fab
-        color="default"
-        aria-label="add"
-        className={classes.fab}
-        onClick={() => console.log('canceling')}
-      >
+      <Fab color="default" aria-label="add" className={classes.fab} onClick={onDismiss}>
         <CrossIcon />
       </Fab>
     </div>

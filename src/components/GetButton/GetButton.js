@@ -60,7 +60,7 @@ const GetButton = ({ product }) => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <RequestForm product={product} />
+            <RequestForm product={product} onDismiss={handleClose} />
           </div>
         </Fade>
       </Modal>
