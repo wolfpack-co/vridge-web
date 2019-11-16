@@ -13,8 +13,15 @@ const Fridge = () => {
     { url: `products`, method: 'put' },
     { manual: true }
   );
+  const { creator } = useParams();
 
-  const [term, setTerm] = useState('');
+  let url = `/products/creator/${localStorage.getItem('user')}`;
+  if (creator === 'others') {
+    url = `${url}/others`;
+  }
+
+  const [{ data: products, loading, error }] = useAxios(url);
+
   const classes = useStyles();
 
   if (loading || error) {

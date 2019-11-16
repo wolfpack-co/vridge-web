@@ -1,9 +1,7 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import BottomMenu from '../components/BottomMenu';
 import Header from '../components/Header';
 
 const useStyles = makeStyles(theme => ({
@@ -23,28 +21,18 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const AuthorizedLayout = ({ children, tabs }) => {
+const UnauthorizedLayout = ({ children, tabs }) => {
   const classes = useStyles();
-
-  if (!localStorage.getItem('user')) {
-    return <Redirect to="/login" />;
-  }
 
   return (
     <div className={classes.root}>
       <CssBaseline />
       <Header />
-      {tabs}
       <Container component="main" className={classes.main} maxWidth="sm">
         {children}
       </Container>
-      <footer className={classes.footer}>
-        <Container maxWidth="sm">
-          <BottomMenu />
-        </Container>
-      </footer>
     </div>
   );
 };
 
-export default AuthorizedLayout;
+export default UnauthorizedLayout;

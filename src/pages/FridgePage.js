@@ -1,7 +1,6 @@
 import React from 'react';
-import Fridge from '../components/Fridge';
 import AuthorizedLayout from './AuthorizedLayout';
 
-const FridgePage = () => <AuthorizedLayout>islon</AuthorizedLayout>;
+const FridgePage = () => <AuthorizedLayout>Fridge page</AuthorizedLayout>;
 
 export default FridgePage;

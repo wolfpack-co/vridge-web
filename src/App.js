@@ -1,7 +1,6 @@
 import React from 'react';
 import { Redirect, Switch, Route, BrowserRouter } from 'react-router-dom';
-import { FridgePage, VridgePage, AccountPage, CommunityPage } from './pages';
-import logo from './logo.svg';
+import { LoginPage, FridgePage, VridgePage, AccountPage, CommunityPage } from './pages';
 import './axiosDefault';
 import './App.css';
 
@@ -10,6 +9,10 @@ const App = () => {
     <BrowserRouter>
       <div className="App">
         <Switch>
+          <Route exact path="/login">
+            <LoginPage />
+          </Route>
+
           <Route exact path="/">
             <Redirect to="/vridge/yours" />
           </Route>

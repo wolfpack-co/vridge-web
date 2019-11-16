@@ -7,7 +7,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import './Menu.css';
+import './Tabs.css';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -54,6 +54,7 @@ export default function SimpleTabs() {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    history.push(newValue);
   };
 
   return (
@@ -63,20 +64,10 @@ export default function SimpleTabs() {
           aria-label="simple tabs example"
           value={value}
           className={classes.tabsContainer}
-          onChange={(event, newValue) => setValue(newValue)}
+          onChange={handleChange}
         >
-          <Tab
-            value="/vridge/yours"
-            onClick={() => history.push('/vridge/yours')}
-            label="Your offerings"
-            {...a11yProps(0)}
-          />
-          <Tab
-            value="/fridge/others"
-            onClick={() => history.push('/vridge/others')}
-            label="Others offerings"
-            {...a11yProps(1)}
-          />
+          <Tab value="/vridge/yours" label="Your offerings" {...a11yProps(0)} />
+          <Tab value="/vridge/others" label="Others offerings" {...a11yProps(1)} />
         </Tabs>
       </AppBar>
     </div>
