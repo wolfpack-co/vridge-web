@@ -16,7 +16,7 @@ const App = () => {
           <Route exact path="/">
             <Redirect to="/vridge/yours" />
           </Route>
-          <Route path="/vridge/:creator">
+          <Route path="/vridge/:category">
             <VridgePage />
           </Route>
           <Route path="/fridge">
