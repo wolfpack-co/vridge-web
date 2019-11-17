@@ -1,11 +1,11 @@
 import React from 'react';
-import Fridge from '../components/Fridge';
+import Account from '../components/Account';
 import AuthorizedLayout from './AuthorizedLayout';
 
-const FridgePage = () => (
+const AccountPage = () => (
   <AuthorizedLayout>
-    <Fridge />
+    <Account />
   </AuthorizedLayout>
 );
 
-export default FridgePage;
+export default AccountPage;
