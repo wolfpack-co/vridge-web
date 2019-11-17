@@ -15,11 +15,16 @@ const useStyles = makeStyles(theme => ({
   main: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
+    paddingBottom: '100px',
   },
   footer: {
     padding: theme.spacing(2),
     marginTop: 'auto',
     backgroundColor: 'white',
+    position: 'fixed',
+    bottom: 0,
+    left: 0,
+    width: '100%',
   },
 }));
 
