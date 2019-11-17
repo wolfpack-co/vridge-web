@@ -27,11 +27,11 @@ const Fridge = () => {
       {/* <Container maxWidth="sm"> */}
       <List className={classes.root}>
         {products
-          .filter(product => product.shared == false && product.creator.id == userId)
+          .filter(product => product.shared == false)
           .map(product => (
             <div key={product.id}>
               <FridgeItem product={product}>
-                <ShareProduct product={product} shared={false} refetch={refetch} />
+                <ShareProduct product={product} refetch={refetch} />
               </FridgeItem>
               {/* </Swipeable> */}
               <Divider variant="inset" component="li" />
