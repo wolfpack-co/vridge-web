@@ -10,11 +10,14 @@ const Fridge = () => {
   const userId = localStorage.getItem('user');
 
   let url = `/products/creator/${userId}`;
-  const [{ data: products, loading, error }, refetch] = useAxios({
-    url
-  }, {
-    useCache: false
-  });
+  const [{ data: products, loading, error }, refetch] = useAxios(
+    {
+      url,
+    },
+    {
+      useCache: false,
+    }
+  );
 
   const classes = useStyles();
 
@@ -29,7 +32,7 @@ const Fridge = () => {
         {products
           .filter(product => product.shared == false)
           .map(product => (
-            <div key={product.id}>
+            <div key={product.id} className={classes.w100}>
               <FridgeItem product={product}>
                 <ShareProduct product={product} refetch={refetch} />
               </FridgeItem>

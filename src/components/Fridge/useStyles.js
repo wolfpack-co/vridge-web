@@ -33,6 +33,9 @@ const useStyles = makeStyles(theme => ({
     float: 'right',
     marginRight: '-15px',
   },
+  w100: {
+    width: '100%',
+  },
 }));
 
 export default useStyles;
