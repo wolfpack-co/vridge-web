@@ -1,1 +1,2 @@
-export { default } from './Fridge';
+export { default } from './Vridge';
+// export * from './Vridge'
