@@ -11,7 +11,157 @@ import useAxios from 'axios-hooks';
 import { useHistory } from 'react-router-dom';
 import React, { useState } from 'react';
 
-const products = ["apple", "asparagus", "aubergine", "avocado", "bacon", "baguette", "banana", "beans", "biscuit", "blueberries", "boiled", "bowl", "bread", "broccoli", "butcher", "butter", "cabbage", "cake", "can", "candy", "carrot", "cauliflower", "cereals", "cheese", "chef", "cherries", "chili", "chips", "chives", "chocolate", "coconut", "coffee", "cookies", "corckscrew", "corn", "corndog", "croissant", "cucumber", "cup", "cupcake", "cutlery", "dairy", "dish", "dishes", "doughnut", "egg", "eggs", "fig", "fish", "flour", "food", "fork", "frappe", "fries", "garlic", "gingerbread", "glass", "grain", "grapes", "grater", "grinder", "groceries", "ham", "hamburguer", "hazelnut", "honey", "jam", "jawbreaker", "jelly", "kebab", "kitchen", "knife", "knives", "ladle", "lemon", "lime", "meat", "milk", "mixer", "mug", "mushroom", "mushrooms", "mustard", "noodles", "oat", "octopus", "oil", "olives", "onion", "orange", "ornating", "pan", "pancakes", "pasta", "peach", "pear", "peas", "pepper", "pickles", "pie", "pineapple", "pint", "pistachio", "pizza", "pomegranate", "popsicle", "pot", "potatoes", "pretzel", "pudding", "pumpkin", "radish", "raspberry", "rice", "risotto", "salad", "salami", "salmon", "salt", "sandwich", "sausage", "scale", "seeds", "shrimp", "sorbet", "spaguetti", "spatula", "spices", "spoon", "steak", "stew", "strainer", "strawberry", "sushi", "taco", "tea", "teapot", "teaspoon", "tenderizer", "thermos", "toast", "toaster", "toffee", "tomato", "turkey", "water", "watermelon", "whisk", "wrap"];
+const products = [
+  'apple',
+  'asparagus',
+  'aubergine',
+  'avocado',
+  'bacon',
+  'baguette',
+  'banana',
+  'beans',
+  'biscuit',
+  'blueberries',
+  'boiled',
+  'bowl',
+  'bread',
+  'broccoli',
+  'butcher',
+  'butter',
+  'cabbage',
+  'cake',
+  'can',
+  'candy',
+  'carrot',
+  'cauliflower',
+  'cereals',
+  'cheese',
+  'chef',
+  'cherries',
+  'chili',
+  'chips',
+  'chives',
+  'chocolate',
+  'coconut',
+  'coffee',
+  'cookies',
+  'corckscrew',
+  'corn',
+  'corndog',
+  'croissant',
+  'cucumber',
+  'cup',
+  'cupcake',
+  'cutlery',
+  'dairy',
+  'dish',
+  'dishes',
+  'doughnut',
+  'egg',
+  'eggs',
+  'fig',
+  'fish',
+  'flour',
+  'food',
+  'fork',
+  'frappe',
+  'fries',
+  'garlic',
+  'gingerbread',
+  'glass',
+  'grain',
+  'grapes',
+  'grater',
+  'grinder',
+  'groceries',
+  'ham',
+  'hamburguer',
+  'hazelnut',
+  'honey',
+  'jam',
+  'jawbreaker',
+  'jelly',
+  'kebab',
+  'kitchen',
+  'knife',
+  'knives',
+  'ladle',
+  'lemon',
+  'lime',
+  'meat',
+  'milk',
+  'mixer',
+  'mug',
+  'mushroom',
+  'mushrooms',
+  'mustard',
+  'noodles',
+  'oat',
+  'octopus',
+  'oil',
+  'olives',
+  'onion',
+  'orange',
+  'ornating',
+  'pan',
+  'pancakes',
+  'pasta',
+  'peach',
+  'pear',
+  'peas',
+  'pepper',
+  'pickles',
+  'pie',
+  'pineapple',
+  'pint',
+  'pistachio',
+  'pizza',
+  'pomegranate',
+  'popsicle',
+  'pot',
+  'potatoes',
+  'pretzel',
+  'pudding',
+  'pumpkin',
+  'radish',
+  'raspberry',
+  'rice',
+  'risotto',
+  'salad',
+  'salami',
+  'salmon',
+  'salt',
+  'sandwich',
+  'sausage',
+  'scale',
+  'seeds',
+  'shrimp',
+  'sorbet',
+  'spaguetti',
+  'spatula',
+  'spices',
+  'spoon',
+  'steak',
+  'stew',
+  'strainer',
+  'strawberry',
+  'sushi',
+  'taco',
+  'tea',
+  'teapot',
+  'teaspoon',
+  'tenderizer',
+  'thermos',
+  'toast',
+  'toaster',
+  'toffee',
+  'tomato',
+  'turkey',
+  'water',
+  'watermelon',
+  'whisk',
+  'wrap',
+];
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -24,7 +174,7 @@ const useStyles = makeStyles(theme => ({
   },
   productName: {
     textTransform: 'capitalize',
-  }
+  },
 }));
 
 const AddToFridgeForm = ({ onDismiss }) => {
@@ -48,8 +198,10 @@ const AddToFridgeForm = ({ onDismiss }) => {
   const handleSubmit = async event => {
     event.preventDefault();
     try {
-      await leaveInFridge({ data: { shared: false, name, quantity, creator: { id: localStorage.getItem('user') } } });
-      handleChange(event, '/fridge')
+      await leaveInFridge({
+        data: { shared: false, name, quantity, creator: { id: localStorage.getItem('user') } },
+      });
+      handleChange(event, '/fridge');
     } catch (e) {
       console.log(e);
     }
@@ -67,7 +219,7 @@ const AddToFridgeForm = ({ onDismiss }) => {
           onChange={event => setName(event.target.value)}
         >
           {products.map(product => (
-            <MenuItem className={classes.productName} value={product}>
+            <MenuItem className={classes.productName} value={product} key={product}>
               {product}
             </MenuItem>
           ))}
@@ -83,7 +235,14 @@ const AddToFridgeForm = ({ onDismiss }) => {
         />
       </FormControl>
       <div>
-        <Button id="btnSubmit" disabled={!(name || quantity)} variant="outlined" type="submit" color="primary" className={classes.button}>
+        <Button
+          id="btnSubmit"
+          disabled={!(name || quantity)}
+          variant="outlined"
+          type="submit"
+          color="primary"
+          className={classes.button}
+        >
           <CheckIcon />
         </Button>
         <Button variant="outlined" color="secondary" className={classes.button} onClick={onDismiss}>
