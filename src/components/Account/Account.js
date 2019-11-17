@@ -11,7 +11,7 @@ import Container from '@material-ui/core/Container';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Button from '@material-ui/core/Button';
 import LockIcon from '@material-ui/icons/Lock';
-import { UsageWeekly, UsedOfferedRatio } from '../Charts';
+import { MoneySaved, UsageWeekly, UsedOfferedRatio } from '../Charts';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -37,7 +37,7 @@ const Account = () => {
   const history = useHistory();
   const classes = useStyles();
 
-  const [{ data, loading, error }] = useAxios(`/users/${localStorage.getItem('user')}`);
+  const [{ data: user, loading, error }] = useAxios(`/users/${localStorage.getItem('user')}`);
   if (loading || error) {
     return null;
   }
@@ -52,12 +52,15 @@ const Account = () => {
       <CssBaseline />
       <Grid container spacing={3}>
         <Grid item xs={4}>
-          <Avatar className={classes.avatar} />
+          <Avatar
+            className={classes.avatar}
+            src={`/avatars/${user.fullName.replace(' ', '_').toLowerCase()}.jpg`}
+          />
         </Grid>
         <Grid item xs={8} className={classes.profile}>
           <Typography component="div">
             <Box fontSize={18} fontWeight="fontWeightBold" m={1}>
-              {data.fullName}
+              {user.fullName}
             </Box>
           </Typography>
           <Button
@@ -72,6 +75,9 @@ const Account = () => {
         </Grid>
         <Grid item xs={12} className={classes.profile}>
           <UsageWeekly type="Personal" />
+        </Grid>
+        <Grid item xs={12} className={classes.profile}>
+          <MoneySaved />
         </Grid>
         <Grid item xs={12} className={classes.profile}>
           <UsageWeekly type="Building" />

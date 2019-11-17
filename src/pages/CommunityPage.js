@@ -1,10 +1,10 @@
 import React from 'react';
-import Fridge from '../components/Fridge';
+import Community from '../components/Community';
 import AuthorizedLayout from './AuthorizedLayout';
 
 const FridgePage = () => (
   <AuthorizedLayout>
-    <Fridge />
+    <Community />
   </AuthorizedLayout>
 );
 
