@@ -1,6 +1,13 @@
 import React from 'react';
 import { Redirect, Switch, Route, BrowserRouter } from 'react-router-dom';
-import { LoginPage, FridgePage, VridgePage, AccountPage, CommunityPage } from './pages';
+import {
+  NewProductPage,
+  LoginPage,
+  FridgePage,
+  VridgePage,
+  AccountPage,
+  CommunityPage,
+} from './pages';
 import './axiosDefault';
 import './App.css';
 
@@ -12,13 +19,17 @@ const App = () => {
           <Route exact path="/login">
             <LoginPage />
           </Route>
-
           <Route exact path="/">
             <Redirect to="/vridge/yours" />
           </Route>
           <Route path="/vridge/:category">
             <VridgePage />
           </Route>
+
+          <Route path="/fridge/new">
+            <NewProductPage />
+          </Route>
+
           <Route path="/fridge">
             <FridgePage />
           </Route>
