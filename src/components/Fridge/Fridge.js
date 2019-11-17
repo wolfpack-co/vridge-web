@@ -1,26 +1,20 @@
 import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
-import UndoIcon from '@material-ui/icons/Undo';
 import useAxios from 'axios-hooks';
-import React, { useState } from 'react';
+import React from 'react';
 import FridgeItem from './FridgeItem';
+import ShareProduct from './ShareProduct';
 import useStyles from './useStyles';
 
 const Fridge = () => {
-  const [{ data: products, loading, error }] = useAxios('/products');
-  const [{ data, loading, error }, returnToFridge] = useAxios(
-    { url: `products`, method: 'put' },
-    { manual: true }
-  );
-  const { creator } = useParams();
+  const userId = localStorage.getItem('user');
 
-  let url = `/products/creator/${localStorage.getItem('user')}`;
-  if (creator === 'others') {
-    url = `${url}/others`;
-  }
-
-  const [{ data: products, loading, error }] = useAxios(url);
+  let url = `/products/creator/${userId}`;
+  const [{ data: products, loading, error }, refetch] = useAxios({
+    url
+  }, {
+    useCache: false
+  });
 
   const classes = useStyles();
 
@@ -28,27 +22,16 @@ const Fridge = () => {
     return null;
   }
 
-  const handleSubmit = async event => {
-    event.preventDefault();
-    try {
-      await returnToFridge({ data: { shared: false } });
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
   return (
     <div>
       {/* <Container maxWidth="sm"> */}
       <List className={classes.root}>
         {products
-          .filter(product => product.name.toLowerCase().includes(term.toLowerCase()))
+          .filter(product => product.shared == false && product.creator.id == userId)
           .map(product => (
             <div key={product.id}>
               <FridgeItem product={product}>
-                <IconButton edge="end" aria-label="undo" onClick={handleSubmit}>
-                  <UndoIcon />
-                </IconButton>
+                <ShareProduct product={product} shared={false} refetch={refetch} />
               </FridgeItem>
               {/* </Swipeable> */}
               <Divider variant="inset" component="li" />

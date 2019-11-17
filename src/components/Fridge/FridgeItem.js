@@ -33,7 +33,7 @@ const FridgeItem = ({ product, children }) => {
                         >
                             Quantity: {product.quantity}
                         </Typography>
-                        {' — by ' + product.creator.fullName}
+                        {product.creator.id == localStorage.getItem('user') ? '' : ' — by ' + product.creator.fullName}
                     </React.Fragment>
                 }
             />

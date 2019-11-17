@@ -2,10 +2,10 @@ import React from 'react';
 import Community from '../components/Community';
 import AuthorizedLayout from './AuthorizedLayout';
 
-const FridgePage = () => (
+const CommunityPage = () => (
   <AuthorizedLayout>
     <Community />
   </AuthorizedLayout>
 );
 
-export default FridgePage;
+export default CommunityPage;
