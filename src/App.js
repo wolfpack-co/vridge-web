@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect, Switch, Route, BrowserRouter } from 'react-router-dom';
 import {
+  LogoPage,
   NewProductPage,
   LoginPage,
   FridgePage,
@@ -38,6 +39,9 @@ const App = () => {
           </Route>
           <Route path="/community">
             <CommunityPage />
+          </Route>
+          <Route path="/logo">
+            <LogoPage />
           </Route>
         </Switch>
       </div>

@@ -4,3 +4,4 @@ export { default as VridgePage } from './VridgePage';
 export { default as CommunityPage } from './CommunityPage';
 export { default as AccountPage } from './AccountPage';
 export { default as NewProductPage } from './NewProductPage';
+export { default as LogoPage } from './LogoPage';
